@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timetable</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="calendar-container">
+      <div class="header">
+        <div class="header-left">
+          <h1>Timetable</h1>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-primary" onclick="openModal()">
+            + Tạo sự kiện
+          </button>
+        </div>
+      </div>
+
+      <div class="calendar-grid">
+        <div class="time-col">
+          <div
+            style="height: 70px; border-bottom: 1px solid var(--border)"
+          ></div>
+          <div class="time-slot-label">05:00</div>
+          <div class="time-slot-label">07:00</div>
+          <div class="time-slot-label">09:00</div>
+          <div class="time-slot-label">11:00</div>
+          <div class="time-slot-label">13:00</div>
+          <div class="time-slot-label">15:00</div>
+          <div class="time-slot-label">17:00</div>
+          <div class="time-slot-label">19:00</div>
+        </div>
+
+        <div class="grid-lines" id="gridLines"></div>
+        <div class="days-container" id="daysContainer"></div>
+      </div>
+    </div>
+
+    <!-- Modal Tạo/Sửa sự kiện -->
+    <div class="modal-overlay" id="eventModal">
+      <div class="modal">
+        <h2 id="modalTitle">Tạo sự kiện mới</h2>
+        <form id="eventForm">
+          <div class="form-group">
+            <label>Tên sự kiện</label>
+            <input
+              type="text"
+              id="evTitle"
+              required
+              placeholder="VD: Họp Team Design"
+            />
+          </div>
+          <div class="form-group">
+            <label>Ngày trong tuần</label>
+            <select id="evDay">
+              <option value="0">Thứ 2</option>
+              <option value="1">Thứ 3</option>
+              <option value="2">Thứ 4</option>
+              <option value="3">Thứ 5</option>
+              <option value="4">Thứ 6</option>
+              <option value="5">Thứ 7</option>
+              <option value="6">Chủ nhật</option>
+            </select>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <div class="form-group" style="flex: 1">
+              <label>Giờ bắt đầu</label>
+              <input
+                type="time"
+                id="evStart"
+                required
+                min="05:00"
+                max="18:59"
+              />
+            </div>
+            <div class="form-group" style="flex: 1">
+              <label>Giờ kết thúc</label>
+              <input type="time" id="evEnd" required min="05:01" max="17:00" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Màu sắc</label>
+            <select id="evColor">
+              <option value="blue" style="background: #3b82f6; color: white">
+                Xanh dương
+              </option>
+              <option value="purple" style="background: #a855f7; color: white">
+                Tím
+              </option>
+              <option value="orange" style="background: #f97316; color: white">
+                Cam
+              </option>
+              <option value="green" style="background: #22c55e; color: white">
+                Xanh lá
+              </option>
+            </select>
+          </div>
+
+          <div class="modal-actions">
+            <!-- Nút xóa (chỉ hiện khi chỉnh sửa) -->
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="btnDelete"
+              style="display: none"
+              onclick="deleteEvent()"
+            >
+              Xóa sự kiện
+            </button>
+
+            <div
+              class="right-btns"
+              id="actionBtnsWrapper"
+              style="margin-left: auto"
+            >
+              <button type="button" class="btn" onclick="closeModal()">
+                Hủy
+              </button>
+              <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
