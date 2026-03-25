@@ -1,6 +1,5 @@
 const START_HOUR = 5;
 const END_HOUR = 19;
-// ĐÃ XÓA: const PIXELS_PER_HOUR = 35; 
 
 const currentDate = new Date();
 console.log(currentDate.toString());
@@ -109,7 +108,6 @@ function renderEvents() {
     const eventEl = document.createElement("div");
     eventEl.className = "event";
     
-    // Gán % vào style thay vì px
     eventEl.style.top = `${topPercent}%`;
     eventEl.style.height = `${heightPercent}%`;
     
@@ -121,7 +119,6 @@ function renderEvents() {
       <div class="title">${ev.title}</div>
     `;
 
-    // Thay vì Xóa trực tiếp, giờ bấm vào sẽ mở Modal Chỉnh sửa
     eventEl.onclick = function () {
       openModal(true, ev, index);
     };
@@ -135,7 +132,6 @@ const form = document.getElementById("eventForm");
 const modalTitle = document.getElementById("modalTitle");
 const btnDelete = document.getElementById("btnDelete");
 
-// Hàm mở Modal dùng chung cho cả Tạo mới và Chỉnh sửa
 function openModal(isEdit = false, eventData = null, index = null) {
   modal.style.display = "flex";
 
